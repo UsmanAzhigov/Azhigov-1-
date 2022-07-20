@@ -1,25 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+class Profile extends React.Component {
+  render() {
+    return (
+      <div>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Привет, меня зовут <b>Вася!</b>
+          <br></br>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <p>Дата года рождения: 22 июня 2021</p>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default Profile;
