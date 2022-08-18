@@ -1,36 +1,48 @@
-import './App.css';
 import React from 'react';
 
 export default function App() {
-  let email, password;
+  const [activeId, setActiveId] = React.useState(null);
 
-  function onChangeInput(event) {
-    if (event.target.name !== email) {
-      email = document.querySelector('input[name = email]').value;
-    }
-    if (event.target.name !== password) {
-      password = document.querySelector('input[name = password]').value;
-    }
-  }
+  const tabs = [
+    {
+      id: 1,
+      title: 'Сколько всего мест в доме?',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quos nemo corporis velit culpa veritatis asperiores deserunt, commodi ipsum at? Esse quibusdam dignissimos recusandae enim. Eaque expeditaeum provident totam!',
+    },
+    {
+      id: 2,
+      title: 'Самая дорогая квартира?',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime fuga deserunt aliquid voluptatum ad, molestiae dicta officiis animi ummollitia, reiciendis a cum ratione veritatis cupiditate voluptatem.Consectetur, exercitationem magnam.',
+    },
+    {
+      id: 3,
+      title: 'Могу ли я отменить бронирование?',
+      description: 'Да, вы можете отменить забронированную квартиру в течение 3 дней.',
+    },
+    {
+      id: 4,
+      title: 'Можно ли купить квартиру?',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est commodi itaque ratione voluptatem dolores iusto aperiam adipisci incidunt perspiciatis ullam! Repellat accusamus rerum excepturi minus delectus? Consequatur libero nemo alias.',
+    },
+  ];
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!email && !password) {
-      alert('Заполните все поля');
-    }
-
-    if (email && password) {
-      console.log({ email, password });
-    }
-  };
+  const newArr = tabs.map((obj, index) => (
+    <div class={`tab ${activeId === index ? 'active' : ''}`}>
+      <label onClick={(e) => setActiveId(activeId === index ? null : index)}>{obj.title}</label>
+      <input id="tab-one" type="checkbox" name="tabs" />
+      <div class="tab-content">{obj.description}</div>
+    </div>
+  ));
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="email" onChange={onChangeInput} placeholder="E-Mail" type="Email" />
-      <br />
-      <input name="password" onChange={onChangeInput} placeholder="Пароль" type="password" />
-      <br />
-      <button>Войти</button>
-    </form>
+    <div id="app">
+      <div class="app-container">
+        <h1 class="app-title">FAQ</h1>
+        <div class="app-tabs">{newArr}</div>
+      </div>
+    </div>
   );
 }
