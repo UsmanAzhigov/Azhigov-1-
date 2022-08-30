@@ -1,48 +1,90 @@
 import React from 'react';
 
 export default function App() {
-  const [activeId, setActiveId] = React.useState(null);
+  const [phraseGenerator, setPhraseGenerator] = React.useState([]);
+  function AppHooks() {
+    const adjectivesArr = [
+      'абсолютный',
+      'адский',
+      'азартный',
+      'активный',
+      'ангельский',
+      'астрономический',
+      'баснословный',
+      'безбожный',
+      'безбрежный',
+      'безвозвратный',
+      'безграничный',
+      'бездонный',
+      'бездушный',
+      'безжалостный',
+      'замечательно',
+      'замечательный',
+      'записной',
+      'запредельный',
+      'заядлый',
+      'звериный',
+      'зверский',
+      'зеленый',
+      'злой',
+      'злостный',
+      'значительный',
+      'неоспоримый',
+      'неотразимый',
+      'неоценимый',
+      'непередаваемый',
+    ];
+    const nounsArr = [
+      'лгун',
+      'день',
+      'конь',
+      'олень',
+      'человек',
+      'программист',
+      'ребёнок',
+      'конец',
+      'город',
+      'дурак',
+    ];
 
-  const tabs = [
-    {
-      id: 1,
-      title: 'Сколько всего мест в доме?',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quos nemo corporis velit culpa veritatis asperiores deserunt, commodi ipsum at? Esse quibusdam dignissimos recusandae enim. Eaque expeditaeum provident totam!',
-    },
-    {
-      id: 2,
-      title: 'Самая дорогая квартира?',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime fuga deserunt aliquid voluptatum ad, molestiae dicta officiis animi ummollitia, reiciendis a cum ratione veritatis cupiditate voluptatem.Consectetur, exercitationem magnam.',
-    },
-    {
-      id: 3,
-      title: 'Могу ли я отменить бронирование?',
-      description: 'Да, вы можете отменить забронированную квартиру в течение 3 дней.',
-    },
-    {
-      id: 4,
-      title: 'Можно ли купить квартиру?',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est commodi itaque ratione voluptatem dolores iusto aperiam adipisci incidunt perspiciatis ullam! Repellat accusamus rerum excepturi minus delectus? Consequatur libero nemo alias.',
-    },
-  ];
-
-  const newArr = tabs.map((obj, index) => (
-    <div class={`tab ${activeId === index ? 'active' : ''}`}>
-      <label onClick={(e) => setActiveId(activeId === index ? null : index)}>{obj.title}</label>
-      <input id="tab-one" type="checkbox" name="tabs" />
-      <div class="tab-content">{obj.description}</div>
-    </div>
-  ));
-
+    const randomIndex1 = Math.floor(Math.random() * (adjectivesArr.length - 1));
+    const result1 = adjectivesArr[randomIndex1];
+    const randomIndex2 = Math.floor(Math.random() * (nounsArr.length - 1));
+    const result2 = nounsArr[randomIndex2];
+    const phrase = result1 + ' ' + result2;
+    setPhraseGenerator([phrase, ...phraseGenerator]);
+  }
+  const handleClear = () => {
+    setPhraseGenerator([]);
+  };
   return (
-    <div id="app">
-      <div class="app-container">
-        <h1 class="app-title">FAQ</h1>
-        <div class="app-tabs">{newArr}</div>
+    <div className="wrapper">
+      <div className="block empty-block">
+        <div className="list">
+          {phraseGenerator.map((value) => {
+            return (
+              <div className="block">
+                <h3>{value}</h3>
+              </div>
+            );
+          })}
+        </div>
+        <img
+          src="https://res.cloudinary.com/dfnhxiq6j/image/upload/v1640354646/ghost_lztiyl.png"
+          width="32px"
+          height="32px"
+          alt="Ghost"
+        />
+        <h2>Список фраз пустой</h2>
+        <p>Чтобы в этом списке появилась фраза, тебе необходимо нажать на кнопку “Сгенерировать”</p>
       </div>
+
+      <button className="btn btn_generate" onClick={AppHooks}>
+        Сгенерировать
+      </button>
+      <button className="btn btn_clear" onClick={handleClear}>
+        Очистить
+      </button>
     </div>
   );
 }
