@@ -23,6 +23,9 @@ export default function Feedback() {
       console.log('name:', name);
       console.log('email:', email);
       console.log('message', message);
+      setName([]);
+      setEmail([]);
+      setMessage([]);
     }
 
     return (
@@ -55,11 +58,7 @@ export default function Feedback() {
     <div className="text">
       <div>
         <h1>Отзывы:</h1>
-        <div>
-          <img
-            className="image"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVNoIlXpNlqjo-W_HuEeXTHmmW1xM3CW_emc6bbH6FTK_3-I70jSAdGt4FMkS_jzyXhK4&usqp=CAU"></img>
-        </div>
+        <div></div>
         <MyBlock></MyBlock>
       </div>
     </div>
